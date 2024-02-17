@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IconProps } from "../../types/iconTypes";
 
-const CartIcon = (props: IconProps) => {
+const CartIcon = (props: IconProps): React.ReactElement => {
   const { height = 16, width = 16, fill = "currentColor", ...rest } = props;
 
   return (

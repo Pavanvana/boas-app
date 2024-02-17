@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 
 import "./App.css";
 
-const App = () => {
+const App = (): ReactElement => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

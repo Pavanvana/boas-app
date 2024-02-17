@@ -7,7 +7,7 @@ export const useCustomT = (path: string) => {
   useEffect(() => {
     const lng = navigator.language;
     i18n.changeLanguage(lng);
-  });
+  }, []);
 
   const customT = (name: string): string => {
     return t(`${path}.${name}`);

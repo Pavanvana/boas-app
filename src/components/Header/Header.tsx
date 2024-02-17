@@ -1,7 +1,13 @@
-import React from "react";
+import cn from "classnames";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
+import { GlobalHotKeys } from "react-hotkeys";
+
 import { boasImageURLs } from "../../constants/imageURL";
 import { useCustomT } from "../../hooks/useCustomT";
+import { Button, DialogTrigger } from "react-aria-components";
+
 import {
   CartIcon,
   ChevronDown,
@@ -9,65 +15,260 @@ import {
   PersonCircle,
   SearchIcon,
 } from "../../icons";
+import ReactPopover from "../../common/ReactPopover/ReactPopover";
+import { MenuIcon } from "../../icons/MenuIcon/MenuIcon";
+import IconButton from "../../common/IconButton/IconButton";
+import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
 
 import {
+  aboutCardClass,
+  aboutPopoverItemClass,
   headerContainer,
   headerElementsContainer,
   headerLeftTabs,
   headerRightTabs,
   leftTabItemClass,
+  numberOfCartItemsCountClass,
+  numberOfCartItemsTextClass,
   rightTabItemClass,
   rightTabItemTextClass,
+  searchButtonClass,
+  searchButtonIconClass,
+  searchButtonTextClass,
 } from "../Header/styles";
+import "./index.css";
+import AccountsModal from "../AccountsModal/AccountsModal";
+import { AccountModalTypes } from "../../types/accountsModalTypes";
 
 const Home = (): React.ReactElement => {
+  const navigate = useNavigate();
+
+  const [isOpenAboutUsPopover, setIsOpenAboutUsPopOver] = useState(false);
+  const [isOpenAccountPopover, setIsOpenAccountPopover] = useState(false);
+  const [isOpenLoginPopover, setIsOpenLoginPopover] = useState(false);
+  const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
+  const [modalType, setModalType] = useState(AccountModalTypes.LOGIN);
+
   const t = useCustomT("header");
 
-  const renderHeaderLeftPart = (): React.ReactElement => (
-    <div className="flex items-center m-[0px_6px_0px_6px]">
-      <ul className={headerLeftTabs}>
-        <li className={leftTabItemClass}>{t("woman")}</li>
-        <li className={leftTabItemClass}>{t("man")}</li>
-        <li className={leftTabItemClass}>{t("allVintage")}</li>
+  const renderHeaderLeftPart = (): React.ReactElement => {
+    const handlers = {
+      GLOBAL_SEARCH: () => {
+        setIsGlobalSearchOpen(true);
+      },
+    };
+    return (
+      <div className="flex items-center m-[0px_6px_0px_6px] w-[40%]">
+        <ul className={headerLeftTabs}>
+          <li
+            className={leftTabItemClass}
+            onClick={() => onClickTab("/collections/vintage-jeans-women")}
+          >
+            {t("woman")}
+          </li>
+          <li
+            className={leftTabItemClass}
+            onClick={() => onClickTab("/collections/vintage-jeans-men")}
+          >
+            {t("man")}
+          </li>
+          <li
+            className={leftTabItemClass}
+            onClick={() => onClickTab("/collections/vintage-jeans")}
+          >
+            {t("allVintage")}
+          </li>
+        </ul>
+        <div className="min-[1041px]:hidden">
+          <IconButton icon={<MenuIcon height={22} width={22} />} />
+        </div>
+        <GlobalHotKeys handlers={handlers}>
+          <button
+            className={searchButtonClass}
+            type="button"
+            onClick={() => {
+              setIsGlobalSearchOpen(true);
+            }}
+          >
+            <div className="flex items-center">
+              <SearchIcon height={18} width={18} />
+              <p className={searchButtonTextClass}>Search</p>
+            </div>
+            <div className={searchButtonIconClass}>Ctrl K</div>
+          </button>
+        </GlobalHotKeys>
+        <ReactBaseModal
+          isOpen={isGlobalSearchOpen}
+          onOpenChange={setIsGlobalSearchOpen}
+        >
+          <h1 slot="title">Notice</h1>
+          <p>Click outside to close this dialog.</p>
+        </ReactBaseModal>
+      </div>
+    );
+  };
+
+  const onClickTab = (NavigationPath: string) => {
+    navigate(NavigationPath);
+  };
+
+  const renderAboutUsPopover = (): React.ReactElement => (
+    <ReactPopover>
+      <ul className={aboutCardClass}>
+        <li
+          key="mission"
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/pages/mission")}
+        >
+          {t("mission")}
+        </li>
+        <li
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/pages/contact-us")}
+        >
+          {t("contactUs")}
+        </li>
+        <li
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/a/faq")}
+        >
+          {t("faq")}
+        </li>
+        <li
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/pages/100-percent-to-charity")}
+        >
+          {t("allProfitsDonated")}
+        </li>
+        <li
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/pages/sustainability")}
+        >
+          {t("sustainability")}
+        </li>
+        <li
+          className={aboutPopoverItemClass}
+          onClick={() => onClickTab("/pages/team")}
+        >
+          {t("team")}
+        </li>
       </ul>
-      <SearchIcon height={22} width={22} />
+    </ReactPopover>
+  );
+
+  const onClickLogin = (): void => {
+    setIsOpenAccountPopover(false);
+    setIsOpenLoginPopover(true);
+    setModalType(AccountModalTypes.LOGIN);
+  };
+
+  const onClickCreateAccount = (): void => {
+    setIsOpenAccountPopover(false);
+    setIsOpenLoginPopover(true);
+    setModalType(AccountModalTypes.CREATE_ACCOUNT);
+  };
+
+  const renderAccountPopover = (): React.ReactElement => (
+    <div>
+      <ReactPopover>
+        <ul className={aboutCardClass}>
+          <li
+            key="login"
+            className={aboutPopoverItemClass}
+            onClick={onClickLogin}
+          >
+            {t("login")}
+          </li>
+          <li className={aboutPopoverItemClass} onClick={onClickCreateAccount}>
+            {t("createAccount")}
+          </li>
+        </ul>
+      </ReactPopover>
     </div>
   );
 
-  const renderAboutUsHoverCard = (): React.ReactElement => (
-    <ul className="flex flex-col bg-white border border-solid">
-      <li>{t("mission")}</li>
-      <li>{t("contactUs")}</li>
-      <li>{t("faq")}</li>
-      <li>{t("allProfitsDonated")}</li>
-      <li>{t("sustainability")}</li>
-      <li>{t("team")}</li>
-    </ul>
-  );
-
-  const renderHeaderRightPart = (): React.ReactElement => (
-    <ul className={headerRightTabs}>
-      <li className={rightTabItemClass}>
-        <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
-        <ChevronDown />
-      </li>
-      <li className={rightTabItemClass}>
-        <InvestIcon height={21} width={21} />
-        <p className={rightTabItemTextClass}>{t("invest")}</p>
-      </li>
-      <li className={rightTabItemClass}>
-        <PersonCircle height={25} width={25} />
-        <p className={rightTabItemTextClass}>{t("account")}</p>
-      </li>
-      <li className={rightTabItemClass}>
-        <CartIcon height={21} width={21} />
-        <p className={rightTabItemTextClass}>{t("cart")}</p>
-      </li>
-    </ul>
-  );
+  const renderHeaderRightPart = (): React.ReactElement => {
+    const aboutUsActiveClassName = isOpenAboutUsPopover ? "bg-gray-100" : "";
+    const accountActiveClassName = isOpenAccountPopover ? "bg-gray-100" : "";
+    const ChevronDownClass = isOpenAboutUsPopover
+      ? "chevron-down-rotate-class"
+      : "chevron-down-class";
+    //TODO: update the count of cart items
+    return (
+      <ul className={headerRightTabs}>
+        <li
+          className={cn(rightTabItemClass, aboutUsActiveClassName)}
+          onMouseOver={() => setIsOpenAboutUsPopOver(true)}
+          onMouseLeave={() => {
+            setIsOpenAboutUsPopOver(false);
+          }}
+        >
+          <DialogTrigger
+            isOpen={isOpenAboutUsPopover}
+            onOpenChange={() => setIsOpenAboutUsPopOver(false)}
+          >
+            <Button className="border-none bg-transparent outline-none">
+              <div className="flex items-center w-[98px]">
+                <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
+                <div className={ChevronDownClass}>
+                  <ChevronDown />
+                </div>
+              </div>
+            </Button>
+            {renderAboutUsPopover()}
+          </DialogTrigger>
+        </li>
+        <li className={rightTabItemClass} onClick={() => onClickTab("/invest")}>
+          <InvestIcon height={25} width={25} />
+          <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
+            {t("invest")}
+          </p>
+        </li>
+        <li
+          className={cn(rightTabItemClass, accountActiveClassName)}
+          onMouseOver={() => setIsOpenAccountPopover(true)}
+          onMouseLeave={() => {
+            setIsOpenAccountPopover(false);
+          }}
+        >
+          <DialogTrigger
+            isOpen={isOpenAccountPopover}
+            onOpenChange={() => setIsOpenAccountPopover(false)}
+          >
+            <Button className="border-none bg-transparent outline-none z-10">
+              <div className="flex items-center">
+                <PersonCircle height={27} width={27} />
+                <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
+                  {t("account")}
+                </p>
+              </div>
+            </Button>
+            {renderAccountPopover()}
+          </DialogTrigger>
+          <AccountsModal
+            isOpen={isOpenLoginPopover}
+            onOpenChange={setIsOpenLoginPopover}
+            modalType={modalType}
+            setModalType={setModalType}
+          />
+        </li>
+        <li className={rightTabItemClass} onClick={() => onClickTab("/cart")}>
+          <div className="relative">
+            <CartIcon height={22} width={22} />
+            <div className={numberOfCartItemsCountClass}>
+              <p className={numberOfCartItemsTextClass}>0</p>
+            </div>
+          </div>
+          <p className={rightTabItemTextClass}>{t("cart")}</p>
+        </li>
+      </ul>
+    );
+  };
 
   const renderLogo = (): React.ReactElement => (
-    <img src={boasImageURLs.logoIMageURL} alt={"boasLogo"} />
+    <div className="flex items-center justify-center w-[10%]">
+      <img src={boasImageURLs.logoIMageURL} alt={"boasLogo"} width={100} />
+    </div>
   );
 
   return (

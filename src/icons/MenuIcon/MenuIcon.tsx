@@ -1,7 +1,8 @@
 import * as React from "react";
+
 import { IconProps } from "../../types/iconTypes";
 
-const ChevronDown = (props: IconProps): React.ReactElement => {
+const MenuIcon = (props: IconProps): React.ReactElement => {
   const { height = 16, width = 16, fill = "currentColor", ...rest } = props;
 
   return (
@@ -10,15 +11,15 @@ const ChevronDown = (props: IconProps): React.ReactElement => {
       width={width}
       height={height}
       fill={fill}
+      className="bi bi-list"
       viewBox="0 0 16 16"
-      className="bi bi-chevron-down"
       {...rest}
     >
       <path
         fillRule="evenodd"
-        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
       />
     </svg>
   );
 };
-export { ChevronDown };
+export { MenuIcon };
