@@ -1,0 +1,8 @@
+.chevron-down-class {
+  transition: 0.4s ease-out;
+}
+
+.chevron-down-rotate-class {
+  transition: 0.4s ease-out;
+  transform: rotateZ(180deg);
+}
