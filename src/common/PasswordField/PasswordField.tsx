@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import { inputClass, labelClass } from "./styles";
+import { errorMsgClass } from "./styles";
 
 interface Props {
   value: string;
@@ -11,7 +12,9 @@ interface Props {
   autoFocus?: boolean;
   className?: string;
   required?: boolean;
-  requiredMsg?: string;
+  errorMsg?: string | null;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 const PasswordField = (props: Props): React.ReactElement => {
@@ -20,9 +23,10 @@ const PasswordField = (props: Props): React.ReactElement => {
     onChange,
     label,
     placeholder,
-    required = false,
-    requiredMsg,
+    errorMsg,
     className,
+    onBlur,
+    onFocus,
   } = props;
   return (
     <div className={cn(className, "mb-4 flex flex-col")}>
@@ -33,8 +37,10 @@ const PasswordField = (props: Props): React.ReactElement => {
         onChange={(e) => onChange(e.target.value)}
         className={inputClass}
         placeholder={placeholder}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
-      {required ? <p>{requiredMsg}</p> : null}
+      <p className={errorMsgClass}>{errorMsg}</p>
     </div>
   );
 };

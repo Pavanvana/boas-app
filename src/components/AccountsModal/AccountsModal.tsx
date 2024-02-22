@@ -2,6 +2,8 @@ import React from "react";
 import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
 import { AccountModalTypes } from "../../types/accountsModalTypes";
 import LoginModal from "../LoginModal/LoginModal";
+import CreateAccount from "../CreateAccount/CreateAccount";
+import ForgetPassword from "../ForgetPassword/ForgetPassword";
 
 interface Props {
   isOpen: boolean;
@@ -17,9 +19,9 @@ const AccountsModal = (props: Props): React.ReactElement => {
       case AccountModalTypes.LOGIN:
         return <LoginModal setModalType={setModalType} />;
       case AccountModalTypes.CREATE_ACCOUNT:
-        return <>Sign up</>;
+        return <CreateAccount />;
       case AccountModalTypes.FORGOT:
-        return <>Forget</>;
+        return <ForgetPassword />;
       default:
         return null;
     }

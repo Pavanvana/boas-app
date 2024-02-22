@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import { inputClass, labelClass } from "./styles";
+import { errorMsgClass, inputClass, labelClass } from "./styles";
 
 interface Props {
   value: string;
@@ -11,7 +11,9 @@ interface Props {
   autoFocus?: boolean;
   className?: string;
   required?: boolean;
-  requiredMsg?: string;
+  errorMsg?: string | null;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 const TextField = (props: Props): React.ReactElement => {
@@ -20,21 +22,24 @@ const TextField = (props: Props): React.ReactElement => {
     onChange,
     label,
     placeholder,
-    required = false,
-    requiredMsg,
+    errorMsg,
     className,
+    onBlur,
+    onFocus,
   } = props;
   return (
     <div className={cn(className, "flex flex-col")}>
       <label className={labelClass}>{label}</label>
       <input
-        type="email"
+        type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={inputClass}
         placeholder={placeholder}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
-      {required ? <p>{requiredMsg}</p> : null}
+      <p className={errorMsgClass}>{errorMsg}</p>
     </div>
   );
 };

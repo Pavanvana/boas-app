@@ -3,3 +3,6 @@ export const inputClass =
 
 export const labelClass =
   "text-[14px] font-sans font-medium text-gray-500 mb-[8px]";
+
+export const errorMsgClass =
+  "text-red-500 text-[12px] font-sans font-normal mt-1 mb-0";

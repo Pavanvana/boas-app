@@ -19,6 +19,8 @@ import ReactPopover from "../../common/ReactPopover/ReactPopover";
 import { MenuIcon } from "../../icons/MenuIcon/MenuIcon";
 import IconButton from "../../common/IconButton/IconButton";
 import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
+import AccountsModal from "../AccountsModal/AccountsModal";
+import { AccountModalTypes } from "../../types/accountsModalTypes";
 
 import {
   aboutCardClass,
@@ -37,8 +39,6 @@ import {
   searchButtonTextClass,
 } from "../Header/styles";
 import "./index.css";
-import AccountsModal from "../AccountsModal/AccountsModal";
-import { AccountModalTypes } from "../../types/accountsModalTypes";
 
 const Home = (): React.ReactElement => {
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ const Home = (): React.ReactElement => {
     );
   };
 
-  const onClickTab = (NavigationPath: string) => {
+  const onClickTab = (NavigationPath: string): void => {
     navigate(NavigationPath);
   };
 
@@ -169,22 +169,20 @@ const Home = (): React.ReactElement => {
   };
 
   const renderAccountPopover = (): React.ReactElement => (
-    <div>
-      <ReactPopover>
-        <ul className={aboutCardClass}>
-          <li
-            key="login"
-            className={aboutPopoverItemClass}
-            onClick={onClickLogin}
-          >
-            {t("login")}
-          </li>
-          <li className={aboutPopoverItemClass} onClick={onClickCreateAccount}>
-            {t("createAccount")}
-          </li>
-        </ul>
-      </ReactPopover>
-    </div>
+    <ReactPopover onChangePopover={setIsOpenAccountPopover}>
+      <ul className={aboutCardClass}>
+        <li
+          key="login"
+          className={aboutPopoverItemClass}
+          onClick={onClickLogin}
+        >
+          {t("login")}
+        </li>
+        <li className={aboutPopoverItemClass} onClick={onClickCreateAccount}>
+          {t("createAccount")}
+        </li>
+      </ul>
+    </ReactPopover>
   );
 
   const renderHeaderRightPart = (): React.ReactElement => {
@@ -207,8 +205,8 @@ const Home = (): React.ReactElement => {
             isOpen={isOpenAboutUsPopover}
             onOpenChange={() => setIsOpenAboutUsPopOver(false)}
           >
-            <Button className="border-none bg-transparent outline-none">
-              <div className="flex items-center w-[98px]">
+            <Button className="border-none bg-transparent outline-none p-0">
+              <div className="flex items-center">
                 <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
                 <div className={ChevronDownClass}>
                   <ChevronDown />
@@ -226,7 +224,6 @@ const Home = (): React.ReactElement => {
         </li>
         <li
           className={cn(rightTabItemClass, accountActiveClassName)}
-          onMouseOver={() => setIsOpenAccountPopover(true)}
           onMouseLeave={() => {
             setIsOpenAccountPopover(false);
           }}
@@ -235,8 +232,11 @@ const Home = (): React.ReactElement => {
             isOpen={isOpenAccountPopover}
             onOpenChange={() => setIsOpenAccountPopover(false)}
           >
-            <Button className="border-none bg-transparent outline-none z-10">
-              <div className="flex items-center">
+            <Button className="border-none bg-transparent outline-none z-10 p-0 cursor-pointer">
+              <div
+                onClick={() => setIsOpenAccountPopover(true)}
+                className="flex items-center"
+              >
                 <PersonCircle height={27} width={27} />
                 <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
                   {t("account")}
