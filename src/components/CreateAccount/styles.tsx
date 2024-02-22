@@ -1,4 +1,4 @@
-export const loginButtonClass =
+export const createAccountButtonClass =
   "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-[16px]";
 
 export const forgetPasswordClass =

@@ -12,10 +12,10 @@ export const leftTabItemClass =
   "text-[16px] font-sans p-[12px_18px_12px_18px] rounded-[6px] font-bold text-[#191818]  cursor-pointer hover:bg-gray-100 flex-shrink-0";
 
 export const rightTabItemClass =
-  "flex items-center p-[0px_8px_0px_8px] cursor-pointer rounded-[6px] hover:bg-gray-100";
+  "flex items-center p-[16px_12px_16px_12px] cursor-pointer rounded-[6px] hover:bg-gray-100 z-10";
 
 export const rightTabItemTextClass =
-  "text-[16px] font-sans text-black p-[0px_6px_0px_6px] font-bold";
+  "text-[16px] font-sans text-black p-[0px_6px_0px_6px] font-bold m-0";
 
 export const aboutCardClass =
   "flex flex-col bg-white border border-solid border-gray-400 list-none p-[5px] rounded-[8px]";
