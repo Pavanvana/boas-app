@@ -13,6 +13,7 @@ import {
   escapeButtonClass,
   globalSearchContainerClass,
   globalSearchInputClass,
+  noSearchTextClass,
 } from "./styles";
 import "./styles.css";
 
@@ -29,7 +30,10 @@ const GlobalSearch = (props: Props): React.ReactElement => {
     <DialogTrigger>
       <ModalOverlay
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
+        onOpenChange={() => {
+          setSearchText("");
+          onOpenChange(false);
+        }}
         className="global-search-ModalOverlay"
       >
         <Modal
@@ -57,8 +61,21 @@ const GlobalSearch = (props: Props): React.ReactElement => {
                   </button>
                 </div>
                 <hr />
-                <div className="m-[8px] p-[3px_10px_3px_10px]">
-                  <div>hi</div>
+                <div className="m-[8px] p-[3px_10px_3px_10px] min-h-[200px]">
+                  {searchText !== "" ? (
+                    <div className="overflow-auto max-h-[400px]">
+                      {/* TODO: Add search results here */}
+                      {false ? (
+                        <div>Search results</div>
+                      ) : (
+                        <div className={noSearchTextClass}>
+                          No results for "{searchText}"
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className={noSearchTextClass}>No recent searches</div>
+                  )}
                 </div>
               </div>
             )}
