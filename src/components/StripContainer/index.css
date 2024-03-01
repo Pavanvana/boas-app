@@ -1,0 +1,12 @@
+.container {
+  overflow: hidden;
+}
+
+.slick-slide {
+  text-align: center;
+}
+
+.text {
+  padding: 20px;
+  font-size: 14px !important;
+}

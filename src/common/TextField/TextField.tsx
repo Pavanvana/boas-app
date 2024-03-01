@@ -14,6 +14,7 @@ interface Props {
   errorMsg?: string | null;
   onBlur?: () => void;
   onFocus?: () => void;
+  inputFieldClass?: string;
 }
 
 const TextField = (props: Props): React.ReactElement => {
@@ -26,6 +27,8 @@ const TextField = (props: Props): React.ReactElement => {
     className,
     onBlur,
     onFocus,
+    inputFieldClass = inputClass,
+    autoFocus,
   } = props;
   return (
     <div className={cn(className, "flex flex-col")}>
@@ -34,10 +37,11 @@ const TextField = (props: Props): React.ReactElement => {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={inputClass}
+        className={inputFieldClass}
         placeholder={placeholder}
         onBlur={onBlur}
         onFocus={onFocus}
+        autoFocus={autoFocus}
       />
       <p className={errorMsgClass}>{errorMsg}</p>
     </div>
