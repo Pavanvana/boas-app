@@ -6,3 +6,6 @@ export const globalSearchContainerClass =
 
 export const globalSearchInputClass =
   "border-none bg-transparent outline-none w-full text-[16px]";
+
+export const noSearchTextClass =
+  "text-[16px] h-[180px] font-sans font-medium text-gray-500 flex items-center h-full justify-center";

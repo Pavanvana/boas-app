@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -8,6 +8,8 @@ import StripContainer from "../StripContainer/StripContainer";
 import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
 import LearnMore from "../LearnMore/LearnMore";
 import Button from "../../common/Button/Button";
+import { countdownTimer } from "../../utils/countdownTimer";
+import Footer from "../Footer/Footer";
 
 import {
   bodyContainerClass,
@@ -26,15 +28,37 @@ import {
   timerTextClass,
   buttonsContainer,
 } from "./styles";
-import Footer from "../Footer/Footer";
+
+const targetTimer = {
+  hours: 22,
+  minutes: 0,
+  seconds: 0,
+};
 
 const Home = (): React.ReactElement => {
   const navigate = useNavigate();
 
   const [isOpenLearnMoreModal, setIsOpenLearnMoreModal] =
     useState<boolean>(false);
+  const [timeLeft, setTimeLeft] = useState<number>(
+    countdownTimer(targetTimer.hours, targetTimer.minutes, targetTimer.seconds)
+  );
 
   const t = useCustomT("header");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTimeLeft) => {
+        if (prevTimeLeft <= 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prevTimeLeft - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const onClickTab = (NavigationPath: string): void => {
     navigate(NavigationPath);
@@ -44,6 +68,9 @@ const Home = (): React.ReactElement => {
     const onClickLearnMoreButton = (): void => {
       setIsOpenLearnMoreModal(true);
     };
+    const hours = Math.floor(timeLeft / 3600);
+    const minutes = Math.floor((timeLeft % 3600) / 60);
+    const seconds = timeLeft % 60;
     return (
       <div className={priceDropsInContainerClass}>
         <div>
@@ -61,19 +88,25 @@ const Home = (): React.ReactElement => {
         <div className={priceDropsInTimerContainerClass}>
           <div className={priceDropsTimerClass}>
             <div className={timerCardClass}>
-              <h1 className={timerTextClass}>15</h1>
+              <h1 className={timerTextClass}>
+                {hours < 10 ? `0${hours}` : hours}
+              </h1>
             </div>
             <p className={timerCardTypeClass}>Hours</p>
           </div>
           <div className={priceDropsTimerClass}>
             <div className={timerCardClass}>
-              <h1 className={timerTextClass}>23</h1>
+              <h1 className={timerTextClass}>
+                {minutes < 10 ? `0${minutes}` : minutes}
+              </h1>
             </div>
             <p className={timerCardTypeClass}>Minutes</p>
           </div>
           <div className={priceDropsTimerClass}>
             <div className={timerCardClass}>
-              <h1 className={timerTextClass}>26</h1>
+              <h1 className={timerTextClass}>
+                {seconds < 10 ? `0${seconds}` : seconds}
+              </h1>
             </div>
             <p className={timerCardTypeClass}>Seconds</p>
           </div>
@@ -122,3 +155,10 @@ const Home = (): React.ReactElement => {
   );
 };
 export default observer(Home);
+function calculateInitialTimeLeft(
+  targetHour: any,
+  targetMinute: any,
+  targetSecond: any
+): number | (() => number) {
+  throw new Error("Function not implemented.");
+}
