@@ -18,9 +18,9 @@ import {
 import ReactPopover from "../../common/ReactPopover/ReactPopover";
 import { MenuIcon } from "../../icons/MenuIcon/MenuIcon";
 import IconButton from "../../common/IconButton/IconButton";
-import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
 import AccountsModal from "../AccountsModal/AccountsModal";
 import { AccountModalTypes } from "../../types/accountsModalTypes";
+import GlobalSearch from "../GlobalSearch/GlobalSearch";
 
 import {
   aboutCardClass,
@@ -43,17 +43,22 @@ import "./index.css";
 const Home = (): React.ReactElement => {
   const navigate = useNavigate();
 
-  const [isOpenAboutUsPopover, setIsOpenAboutUsPopOver] = useState(false);
-  const [isOpenAccountPopover, setIsOpenAccountPopover] = useState(false);
-  const [isOpenLoginPopover, setIsOpenLoginPopover] = useState(false);
-  const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
-  const [modalType, setModalType] = useState(AccountModalTypes.LOGIN);
+  const [isOpenAboutUsPopover, setIsOpenAboutUsPopOver] =
+    useState<boolean>(false);
+  const [isOpenAccountPopover, setIsOpenAccountPopover] =
+    useState<boolean>(false);
+  const [isOpenLoginPopover, setIsOpenLoginPopover] = useState<boolean>(false);
+  const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<AccountModalTypes>(
+    AccountModalTypes.LOGIN
+  );
 
   const t = useCustomT("header");
 
   const renderHeaderLeftPart = (): React.ReactElement => {
     const handlers = {
-      GLOBAL_SEARCH: () => {
+      GLOBAL_SEARCH: (event: any) => {
+        event.preventDefault();
         setIsGlobalSearchOpen(true);
       },
     };
@@ -97,13 +102,10 @@ const Home = (): React.ReactElement => {
             <div className={searchButtonIconClass}>Ctrl K</div>
           </button>
         </GlobalHotKeys>
-        <ReactBaseModal
+        <GlobalSearch
           isOpen={isGlobalSearchOpen}
           onOpenChange={setIsGlobalSearchOpen}
-        >
-          <h1 slot="title">Notice</h1>
-          <p>Click outside to close this dialog.</p>
-        </ReactBaseModal>
+        />
       </div>
     );
   };
@@ -205,7 +207,7 @@ const Home = (): React.ReactElement => {
             isOpen={isOpenAboutUsPopover}
             onOpenChange={() => setIsOpenAboutUsPopOver(false)}
           >
-            <Button className="border-none bg-transparent outline-none p-0">
+            <Button className="border-none bg-transparent outline-none p-0 max-[700px]:hidden">
               <div className="flex items-center">
                 <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
                 <div className={ChevronDownClass}>
@@ -267,7 +269,11 @@ const Home = (): React.ReactElement => {
 
   const renderLogo = (): React.ReactElement => (
     <div className="flex items-center justify-center w-[10%]">
-      <img src={boasImageURLs.logoIMageURL} alt={"boasLogo"} width={100} />
+      <img
+        src={boasImageURLs.logoIMageURL}
+        alt={"boasLogo"}
+        className="w-[100px] max-[900px]:w-[80px]"
+      />
     </div>
   );
 

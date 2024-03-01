@@ -1,4 +1,4 @@
-.react-aria-ModalOverlay {
+.global-search-ModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,20 +8,20 @@
   outline: none;
   border: none;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   z-index: 100;
 }
 
-.react-aria-Modal {
+.global-search-Modal {
   box-shadow: 0 8px 20px rgba(0 0 0 / 0.1);
   border-radius: 8px;
   background: #ffffff;
   border: none;
   outline: none;
-  max-width: 900px;
-  min-width: 450px;
-  margin: 30px;
+  max-width: 750px;
+  min-width: 750px;
+  margin: 100px;
   z-index: 100;
 
   &[data-entering] {

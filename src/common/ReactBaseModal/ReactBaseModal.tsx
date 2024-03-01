@@ -1,10 +1,11 @@
 import { Dialog, DialogTrigger, Modal } from "react-aria-components";
 
-import "./index.css";
 import { ReactElement, ReactNode } from "react";
 import { observer } from "mobx-react-lite";
 import { CloseIcon } from "../../icons";
+
 import { modalCloseButtonClass } from "./styles";
+import "./index.css";
 
 interface ReactBaseModalProps {
   children: ReactNode;

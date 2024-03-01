@@ -383,6 +383,7 @@ module.exports = {
         "16px": "16px",
       },
       boxShadow: {
+        custom: "0 0 5px rgba(0, 0, 0, 0.3)",
         xs: "0px 1px 2px rgba(16, 24, 40, 0.05)",
         defaultFocusedShadow:
           "0px 0px 0px 4px #D1E9FF, 0px 1px 2px rgba(16, 24, 40, 0.05)",
