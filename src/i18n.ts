@@ -21,6 +21,7 @@ i18n.use(initReactI18next).init({
           team: "Team",
           login: "Login",
           createAccount: "Create Account",
+          logout: "Logout",
         },
       },
     },

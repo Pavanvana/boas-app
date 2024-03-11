@@ -4,21 +4,29 @@ import { getButtonStyles } from "./styles";
 
 interface Props {
   buttonText: string;
-  onClick: () => void;
+  onClick?: () => void;
   size: string;
   className?: string;
   disabled?: boolean;
+  type?: "submit" | "reset" | "button" | undefined;
 }
 
 const Button = (props: Props): React.ReactElement => {
-  const { buttonText, onClick, className, disabled, size } = props;
+  const {
+    buttonText,
+    onClick,
+    className,
+    disabled,
+    size,
+    type = "button",
+  } = props;
 
   return (
     <button
       onClick={onClick}
       className={cn(getButtonStyles(size), className)}
       disabled={disabled}
-      type="button"
+      type={type}
     >
       {buttonText}
     </button>

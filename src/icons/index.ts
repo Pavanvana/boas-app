@@ -1,3 +1,5 @@
+import { CaretDownFillIcon } from "./CaretDownFillIcon/CaretDownFillIcon";
+import { CaretUpFillIcon } from "./CaretUpFillIcon/CaretUpFillIcon";
 import { CartIcon } from "./CartIcon/CartIcon";
 import { ChevronDown } from "./ChevronDown/ChevronDown";
 import { CloseIcon } from "./CloseIcon/CloseIcon";
@@ -12,4 +14,6 @@ export {
   CartIcon,
   ChevronDown,
   CloseIcon,
+  CaretDownFillIcon,
+  CaretUpFillIcon,
 };

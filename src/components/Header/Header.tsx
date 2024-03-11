@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import { GlobalHotKeys } from "react-hotkeys";
-
+import Cookies from "js-cookie";
+import { SuccessToast } from "../../utils/toastUtils";
 import { boasImageURLs } from "../../constants/imageURL";
 import { useCustomT } from "../../hooks/useCustomT";
 import { Button, DialogTrigger } from "react-aria-components";
@@ -21,6 +22,8 @@ import IconButton from "../../common/IconButton/IconButton";
 import AccountsModal from "../AccountsModal/AccountsModal";
 import { AccountModalTypes } from "../../types/accountsModalTypes";
 import GlobalSearch from "../GlobalSearch/GlobalSearch";
+import Logout from "../Logout/Logout";
+import ReactBaseModal from "../../common/ReactBaseModal/ReactBaseModal";
 
 import {
   aboutCardClass,
@@ -52,6 +55,7 @@ const Home = (): React.ReactElement => {
   const [modalType, setModalType] = useState<AccountModalTypes>(
     AccountModalTypes.LOGIN
   );
+  const [isLogOutModalOpen, setIsLogOutModalOpen] = useState<boolean>(false);
 
   const t = useCustomT("header");
 
@@ -85,7 +89,12 @@ const Home = (): React.ReactElement => {
           </li>
         </ul>
         <div className="min-[1041px]:hidden">
-          <IconButton icon={<MenuIcon height={22} width={22} />} />
+          <IconButton
+            onClick={() => {
+              SuccessToast("Coming Soon");
+            }}
+            icon={<MenuIcon height={22} width={22} />}
+          />
         </div>
         <GlobalHotKeys handlers={handlers}>
           <button
@@ -170,22 +179,74 @@ const Home = (): React.ReactElement => {
     setModalType(AccountModalTypes.CREATE_ACCOUNT);
   };
 
-  const renderAccountPopover = (): React.ReactElement => (
-    <ReactPopover onChangePopover={setIsOpenAccountPopover}>
-      <ul className={aboutCardClass}>
-        <li
-          key="login"
-          className={aboutPopoverItemClass}
-          onClick={onClickLogin}
+  const onClickLogout = (): void => {
+    setIsOpenAccountPopover(false);
+    setIsLogOutModalOpen(true);
+  };
+
+  const renderAccountPopover = (): React.ReactElement => {
+    const jwtToken = Cookies.get("jwt_token");
+    const user = JSON.parse(localStorage.getItem("user")!);
+
+    return (
+      <div>
+        <ReactPopover onChangePopover={setIsOpenAccountPopover}>
+          {jwtToken === undefined ? (
+            <ul className={aboutCardClass}>
+              <li
+                key="login"
+                className={aboutPopoverItemClass}
+                onClick={onClickLogin}
+              >
+                {t("login")}
+              </li>
+              <li
+                key={"createAccount"}
+                className={aboutPopoverItemClass}
+                onClick={onClickCreateAccount}
+              >
+                {t("createAccount")}
+              </li>
+            </ul>
+          ) : (
+            <ul className={aboutCardClass}>
+              {user && (
+                <li className="p-[6px_16px_6px_16px] hover:bg-gray-100 text-[14px] font-sans font-medium text-gray-500 rounded-[6px]">
+                  <p>
+                    Logged in as{" "}
+                    <span className="text-black">{user.username}</span>
+                  </p>
+                </li>
+              )}
+              <li
+                key="account"
+                className={aboutPopoverItemClass}
+                onClick={() => {}}
+              >
+                {t("account")}
+              </li>
+              <li
+                key={"logout"}
+                className={aboutPopoverItemClass}
+                onClick={onClickLogout}
+              >
+                {t("logout")}
+              </li>
+            </ul>
+          )}
+        </ReactPopover>
+        <ReactBaseModal
+          isOpen={isLogOutModalOpen}
+          onOpenChange={setIsLogOutModalOpen}
         >
-          {t("login")}
-        </li>
-        <li className={aboutPopoverItemClass} onClick={onClickCreateAccount}>
-          {t("createAccount")}
-        </li>
-      </ul>
-    </ReactPopover>
-  );
+          <Logout
+            isLogOutModalOpen={isLogOutModalOpen}
+            setIsLogOutModalOpen={setIsLogOutModalOpen}
+          />
+        </ReactBaseModal>
+      </div>
+    );
+  };
 
   const renderHeaderRightPart = (): React.ReactElement => {
     const aboutUsActiveClassName = isOpenAboutUsPopover ? "bg-gray-100" : "";
@@ -234,7 +295,7 @@ const Home = (): React.ReactElement => {
             isOpen={isOpenAccountPopover}
             onOpenChange={() => setIsOpenAccountPopover(false)}
           >
-            <Button className="border-none bg-transparent outline-none z-10 p-0 cursor-pointer">
+            <Button className="border-none bg-transparent outline-none p-0 cursor-pointer">
               <div
                 onClick={() => setIsOpenAccountPopover(true)}
                 className="flex items-center"

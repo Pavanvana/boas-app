@@ -1,0 +1,24 @@
+.countries-flags {
+  background-size: 30px !important;
+  background-position: 0 -1220px;
+}
+
+.caret-up-icon-class {
+  top: 0px;
+  transition: all 0.1s ease;
+  position: relative;
+}
+
+.caret-down-icon-class {
+  position: relative;
+  top: 5px;
+  transition: all 0.01s ease;
+}
+
+.chat-bot-button {
+  background: linear-gradient(
+    315.05deg,
+    rgb(38, 101, 255) -22.5%,
+    rgb(0, 190, 255) 116.56%
+  );
+}

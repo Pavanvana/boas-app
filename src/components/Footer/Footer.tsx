@@ -33,12 +33,12 @@ const Footer = (): React.ReactElement => {
           We will send you updates and sustainability news
         </p>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center max-[800px]:flex-col max-[800px]:items-start">
         <TextField
           value={email}
           onChange={setEmail}
           placeholder="Email Address"
-          className="mr-2 p-[12px_15px_12px_15px] font-sans"
+          className="mr-2 p-[12px_15px_12px_15px] font-sans max-[500px]:pl-[0px]"
         />
         <Button
           buttonText="Subscribe"
@@ -52,7 +52,7 @@ const Footer = (): React.ReactElement => {
 
   const renderFooterBottomSection = (): React.ReactElement => (
     <div className={footerBottomContainerClass}>
-      <div className="flex items-start justify-start w-full">
+      <div className="flex max-[800px]:flex-col items-start justify-start w-full">
         <div className={footerSectionsClass}>
           <img
             src={boasImageURLs.boasLogo}

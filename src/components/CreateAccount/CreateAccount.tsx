@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import TextField from "../../common/TextField/TextField";
 import PasswordField from "../../common/PasswordField/PasswordField";
 import Button from "../../common/Button/Button";
-import { createAccountButtonClass } from "./styles";
 import { isValidField } from "../../utils/fieldUtils";
+import createAccountAPI from "../../apis/createAccountAPI";
+import { ResponseUserType } from "../../types/accountsModalTypes";
 
-const CreateAccount = (): React.ReactElement => {
+import { createAccountButtonClass } from "./styles";
+
+interface Props {
+  onOpenChange: (val: boolean) => void;
+}
+const CreateAccount = (props: Props): React.ReactElement => {
+  const { onOpenChange } = props;
+
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, SetEmail] = useState<string>("");
@@ -16,14 +26,32 @@ const CreateAccount = (): React.ReactElement => {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
-  const onClickCreateAccount = (): void => {
+  const navigate = useNavigate();
+
+  const onSubmitSuccess = (
+    jwtToken: string,
+    responseUser: ResponseUserType
+  ) => {
+    Cookies.set("jwt_token", jwtToken, { expires: 30 });
+    localStorage.setItem("user", JSON.stringify(responseUser));
+    navigate("/");
+  };
+  const onClickSubmit = async (e: any): Promise<void> => {
+    e.preventDefault();
     const isValid =
       isValidField(firstName) &&
       isValidField(lastName) &&
       isValidField(email) &&
       isValidField(password);
     if (isValid) {
-      //TODO: API Call for login
+      const user = {
+        firstName,
+        lastName,
+        email,
+        password,
+        username: firstName,
+      };
+      createAccountAPI(user, onOpenChange, onSubmitSuccess);
     } else {
       if (!isValidField(firstName)) setFirstNameError("First Name is required");
       if (!isValidField(lastName)) setLastNameError("Last Name is required");
@@ -65,7 +93,7 @@ const CreateAccount = (): React.ReactElement => {
   };
 
   return (
-    <div className="flex flex-col">
+    <form className="flex flex-col" onSubmit={onClickSubmit}>
       <TextField
         label="First Name"
         value={firstName}
@@ -104,11 +132,11 @@ const CreateAccount = (): React.ReactElement => {
       />
       <Button
         buttonText="Create Account"
-        onClick={onClickCreateAccount}
         className={createAccountButtonClass}
         size="large"
+        type="submit"
       />
-    </div>
+    </form>
   );
 };
 export default CreateAccount;

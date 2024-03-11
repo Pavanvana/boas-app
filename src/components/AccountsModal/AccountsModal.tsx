@@ -17,9 +17,11 @@ const AccountsModal = (props: Props): React.ReactElement => {
   const renderModelBasedOnType = (): React.ReactElement | null => {
     switch (modalType) {
       case AccountModalTypes.LOGIN:
-        return <LoginModal setModalType={setModalType} />;
+        return (
+          <LoginModal setModalType={setModalType} onOpenChange={onOpenChange} />
+        );
       case AccountModalTypes.CREATE_ACCOUNT:
-        return <CreateAccount />;
+        return <CreateAccount onOpenChange={onOpenChange} />;
       case AccountModalTypes.FORGOT:
         return <ForgetPassword />;
       default:
