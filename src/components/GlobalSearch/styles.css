@@ -29,6 +29,14 @@
   }
 }
 
+@media (max-width: 800px) {
+  .global-search-Modal {
+    max-width: 100%;
+    min-width: 100%;
+    margin: 0px;
+  }
+}
+
 @keyframes modal-fade {
   from {
     opacity: 0;

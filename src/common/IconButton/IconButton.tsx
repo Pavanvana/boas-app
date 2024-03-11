@@ -4,12 +4,13 @@ import { buttonContainerClass } from "./styles";
 
 interface Props {
   icon: JSX.Element;
+  onClick: () => void;
 }
 
 const IconButton = (props: Props): React.ReactElement => {
-  const { icon } = props;
+  const { icon, onClick } = props;
   return (
-    <button className={buttonContainerClass} type="button">
+    <button className={buttonContainerClass} type="button" onClick={onClick}>
       {icon}
     </button>
   );

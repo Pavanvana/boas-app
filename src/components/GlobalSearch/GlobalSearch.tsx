@@ -43,7 +43,7 @@ const GlobalSearch = (props: Props): React.ReactElement => {
         >
           <Dialog className="outline-none w-full z-20">
             {({ close }) => (
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full">
                 <div className={globalSearchContainerClass}>
                   <div className="flex items-center grow">
                     <SearchIcon height={20} width={20} />
@@ -61,7 +61,7 @@ const GlobalSearch = (props: Props): React.ReactElement => {
                   </button>
                 </div>
                 <hr />
-                <div className="m-[8px] p-[3px_10px_3px_10px] min-h-[200px]">
+                <div className="m-[8px] p-[3px_10px_3px_10px] min-h-[200px] flex items-center justify-center">
                   {searchText !== "" ? (
                     <div className="overflow-auto max-h-[400px]">
                       {/* TODO: Add search results here */}

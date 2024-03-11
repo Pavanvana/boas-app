@@ -1,0 +1,26 @@
+/* width */
+.popular-brands::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+.popular-brands::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.popular-brands::-webkit-scrollbar-thumb {
+  background: rgb(202, 201, 201);
+  border-radius: 50px;
+  margin: 1px;
+}
+
+.popular-brands {
+  overflow: hidden;
+  padding-bottom: 8px !important;
+}
+
+.popular-brands:hover {
+  overflow-x: auto;
+  padding-bottom: 0px !important;
+}

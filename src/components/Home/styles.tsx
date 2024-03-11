@@ -1,8 +1,8 @@
 export const bodyContainerClass =
-  "flex items-center max-[800px]:flex-col h-[500px] gap-[15px] bg-[#ffffff]";
+  "flex items-center max-[800px]:flex-col max-[800px]:items-start h-[500px] gap-[15px] bg-[#ffffff]";
 
 export const bodyLeftContainerClass =
-  "flex flex-col justify-center w-[50%] h-full ml-[100px] max-[800px]:w-full p-[20px]";
+  "flex flex-col justify-center w-[50%] h-full ml-[100px] max-[800px]:w-full max-[800px]:ml-0 p-[20px]";
 
 export const bodyRightContainerClass = `flex flex-col items-center justify-center w-[50%] max-[800px]:w-full h-full bg-[url('//shop.boas.co/cdn/shop/files/hero-img-new.jpg?v=1700680068')] bg-cover bg-center`;
 
@@ -11,24 +11,6 @@ export const offerHeader = "text-[40px] font-sans font-bold text-gray-900";
 export const offerDescription =
   "text-[15px] font-sans font-semibold text-gray-600 my-[15px]";
 
-export const priceDropsInContainerClass = "flex items-center";
-
-export const priceDropsInTextClass =
-  "text-[36px] max-[1200px]:text-[20px] font-sans font-bold mr-[30px] flex-shrink-0 mb-[10px]";
-
-export const priceDropsInTimerContainerClass = "flex items-center gap-[10px]";
-
-export const priceDropsTimerClass = "flex flex-col items-center";
-
-export const timerCardClass =
-  "p-[20px] max-[1290px]:p-[15px] max-[900px]:p-[10px] border border-solid font-sans font-medium rounded-[5px] mb-[5px] shadow-custom border-none outline-none";
-
-export const timerTextClass =
-  "text-[30px] max-[900px]:text-[20px] font-bold font-sans text-black";
-
-export const timerCardTypeClass =
-  "font-sans font-medium text-black text-[12px]";
-
 export const learnMoreTextClass =
   "text-black text-[14px] font-sans font-bold cursor-pointer underline";
 
@@ -36,3 +18,35 @@ export const rightButtonsClass =
   "bg-black hover:bg-white hover:text-black text-white border-none outline-none cursor-pointer !p-[20px_50px_20px_50px] font-sans font-bold rounded-[5px] text-[14px]";
 
 export const buttonsContainer = "flex justify-between items-center gap-[20px]";
+
+export const chatbotAndCountriesContainerClass =
+  "h-full z-10 top-[88vh] w-full flex justify-center fixed";
+
+export const countriesDropDownClass =
+  "flex items-center justify-center p-[7px] bg-white h-[20px] rounded-[5px]";
+
+export const countriesFlagClass =
+  "w-[30px] h-[20px] inline-block align-middle mr-[6px] rounded-[4px] bg-repeat bg-[url('https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149')]";
+
+export const countriesTextClass =
+  "font-sans text-[14px] mx-[7px] font-semibold";
+
+export const chatbotButtonClass =
+  " h-[50px] w-[50px] flex items-center justify-center outline-none cursor-pointer border-none rounded-[50%]";
+
+export const donateCardClass =
+  "bg-white border-none list-none rounded-[20px] m-[30px] flex items-center justify-between w-[90%] max-[800px]:flex-col";
+
+export const donateCardHeaderClass =
+  "text-[34px] font-sans font-bold mb-[20px]";
+
+export const stopTheWashCardClass =
+  "bg-white border-none list-none rounded-[20px] m-[30px] flex items-center justify-between w-[90%]";
+
+export const shopTheWashHeaderClass = "text-[30px] font-sans font-bold";
+
+export const shopTheWashCardClass =
+  "h-[200px] flex flex-col items-center justify-center bg-cover bg-no-repeat bg-center flex-grow rounded-[20px]";
+
+export const shopTheWashCardColor =
+  "text-[#ffffff] font-sans text-[30px] font-bold m-[15px]";

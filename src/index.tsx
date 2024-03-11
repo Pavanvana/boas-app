@@ -7,7 +7,7 @@ import App from "./App";
 import "./i18n";
 
 const keyMap = {
-  GLOBAL_SEARCH: "Ctrl+k",
+  GLOBAL_SEARCH: ["Ctrl+k", "Ctrl+K"],
 };
 
 ReactDOM.render(

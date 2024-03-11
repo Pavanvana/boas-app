@@ -11,6 +11,12 @@ export const boasImageURLs = {
     "https://cdn.shopify.com/s/files/1/0598/2194/9121/files/googleplay_2114da4a87.svg?v=1699922657",
   appStore:
     "https://cdn.shopify.com/s/files/1/0598/2194/9121/files/appstore_53562f351c_1.svg",
+  weAreHere:
+    "https://embed.tawk.to/_s/v4/assets/images/attention-grabbers/168-r-br.svg",
+  countriesImageURL:
+    "https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149",
+  childrenImageURL:
+    "https://shop.boas.co/cdn/shop/files/Home_1_736410a4-91bb-4bf7-b3fe-da64e0769f4c_900x.jpg?v=1688634183",
 };
 
 export const supportedPaymentMethodsImages = {
