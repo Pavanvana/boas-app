@@ -103,32 +103,31 @@ const Home = (): React.ReactElement => {
     </div>
   );
 
-  const renderChatbotAndCountries = (): React.ReactElement => (
-    <div className={chatbotAndCountriesContainerClass}>
-      <div className="flex justify-between w-[93%]">
-        <div
-          className={countriesDropDownClass}
-          onClick={() => {
-            setIsOpenCountriesDropDown(!isOpenCountriesDropDown);
-          }}
-        >
-          <div className={cn(countriesFlagClass, "countries-flags")}></div>
-          <div className={countriesTextClass}>EUP</div>
-          {isOpenCountriesDropDown ? (
-            <div className="caret-up-icon-class">
-              <CaretUpFillIcon height={14} width={14} />
-            </div>
-          ) : (
-            <div className="caret-down-icon-class">
-              <CaretDownFillIcon height={14} width={14} />
-            </div>
-          )}
+  const renderCountriesList = (): React.ReactElement => (
+    <div
+      className={countriesDropDownClass}
+      onClick={() => {
+        setIsOpenCountriesDropDown(!isOpenCountriesDropDown);
+      }}
+    >
+      <div className={cn(countriesFlagClass, "countries-flags")}></div>
+      <div className={countriesTextClass}>EUP</div>
+      {isOpenCountriesDropDown ? (
+        <div className="caret-up-icon-class">
+          <CaretUpFillIcon height={14} width={14} />
         </div>
-        <button className={cn(chatbotButtonClass, "chat-bot-button")}>
-          <ChatbotIcon />
-        </button>
-      </div>
+      ) : (
+        <div className="caret-down-icon-class">
+          <CaretDownFillIcon height={14} width={14} />
+        </div>
+      )}
     </div>
+  );
+
+  const renderChatbot = (): React.ReactElement => (
+    <button className={cn(chatbotButtonClass, "chat-bot-button")}>
+      <ChatbotIcon />
+    </button>
   );
 
   const renderDonationCard = (): React.ReactElement => (
@@ -219,7 +218,8 @@ const Home = (): React.ReactElement => {
       <Header />
       <StripContainer />
       {renderPriceDrops()}
-      {renderChatbotAndCountries()}
+      {renderCountriesList()}
+      {renderChatbot()}
       <PopularBrands />
       {renderDonationCard()}
       {renderStopTheWashCard()}
