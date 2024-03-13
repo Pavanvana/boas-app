@@ -7,7 +7,7 @@ export const subscribeHeaderClass =
 export const subscribeDescriptionClass = "my-[15px] font-sans";
 
 export const subscribeButtonClass =
-  "bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded focus:outline outline-4 outline-blue-100 max-[800px]:ml-[15px] max-[500px]:ml-[0px]";
+  "bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded max-[800px]:ml-[15px] max-[500px]:ml-[0px]";
 
 export const footerBottomContainerClass =
   "w-[85%] m-auto flex items-start space-between flex-wrap";

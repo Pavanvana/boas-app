@@ -39,3 +39,15 @@ export const supportedPaymentMethodsImages = {
   amxPayment:
     "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_amx.png?v=74243363861210880051679307177",
 };
+
+export const donateSectionImages = {
+  shopWomenImg:
+    "https://shop.boas.co/cdn/shop/files/smiling-woman-poses_900x.jpg?v=1686562818",
+  shopMenImg:
+    "https://shop.boas.co/cdn/shop/files/man-in-retail-store-with-big-smile_900x.jpg?v=1678787485",
+};
+
+export const getTheAppImg = {
+  getTheApp:
+    "https://cdn.shopify.com/s/files/1/0598/2194/9121/files/app-imges.png?v=1699922665",
+};
