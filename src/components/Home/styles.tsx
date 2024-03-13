@@ -15,7 +15,7 @@ export const learnMoreTextClass =
   "text-black text-[14px] font-sans font-bold cursor-pointer underline";
 
 export const rightButtonsClass =
-  "bg-black hover:bg-white hover:text-black text-white border-none outline-none cursor-pointer !p-[20px_50px_20px_50px] font-sans font-bold rounded-[5px] text-[14px]";
+  "bg-black hover:bg-white hover:text-black text-white border-none cursor-pointer !p-[20px_50px_20px_50px] font-sans font-bold rounded-[5px] text-[14px]";
 
 export const buttonsContainer = "flex justify-between items-center gap-[20px]";
 
@@ -23,7 +23,7 @@ export const chatbotAndCountriesContainerClass =
   "h-full z-10 top-[88vh] w-full flex justify-center fixed";
 
 export const countriesDropDownClass =
-  "flex items-center justify-center p-[7px] bg-white h-[34px] rounded-[5px] cursor-pointer";
+  "flex items-center justify-center p-[7px] bg-white h-[34px] rounded-[5px]";
 
 export const countriesFlagClass =
   "w-[30px] h-[20px] inline-block align-middle mr-[6px] rounded-[4px] bg-repeat bg-[url('https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149')]";
