@@ -15,7 +15,7 @@ export const learnMoreTextClass =
   "text-black text-[14px] font-sans font-bold cursor-pointer underline";
 
 export const rightButtonsClass =
-  "bg-black hover:bg-white hover:text-black text-white border-none outline-none cursor-pointer !p-[20px_50px_20px_50px] font-sans font-bold rounded-[5px] text-[14px]";
+  "bg-black hover:bg-white hover:text-black text-white border-none cursor-pointer !p-[20px_50px_20px_50px] font-sans font-bold rounded-[5px] text-[14px]";
 
 export const buttonsContainer = "flex justify-between items-center gap-[20px]";
 
@@ -23,7 +23,7 @@ export const chatbotAndCountriesContainerClass =
   "h-full z-10 top-[88vh] w-full flex justify-center fixed";
 
 export const countriesDropDownClass =
-  "flex items-center justify-center p-[7px] bg-white h-[20px] rounded-[5px]";
+  "flex items-center justify-center p-[7px] bg-white h-[34px] rounded-[5px] fixed bottom-[50px] left-[50px]";
 
 export const countriesFlagClass =
   "w-[30px] h-[20px] inline-block align-middle mr-[6px] rounded-[4px] bg-repeat bg-[url('https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/ba-flags.png?=14261939516959647149')]";
@@ -32,7 +32,7 @@ export const countriesTextClass =
   "font-sans text-[14px] mx-[7px] font-semibold";
 
 export const chatbotButtonClass =
-  " h-[50px] w-[50px] flex items-center justify-center outline-none cursor-pointer border-none rounded-[50%]";
+  " h-[50px] w-[50px] flex items-center justify-center outline-none cursor-pointer border-none rounded-[50%] fixed bottom-[50px] right-[50px]";
 
 export const donateCardClass =
   "bg-white border-none list-none rounded-[20px] m-[30px] flex items-center justify-between w-[90%] max-[800px]:flex-col";
@@ -50,3 +50,9 @@ export const shopTheWashCardClass =
 
 export const shopTheWashCardColor =
   "text-[#ffffff] font-sans text-[30px] font-bold m-[15px]";
+
+export const shopTheWashContainerClass =
+  "p-[30px] w-full flex justify-between gap-[30px] max-[1100px]:hover:pb-[22px] max-[1100px]:overflow-hidden max-[1100px]:hover:overflow-auto max-[800px]:flex-col";
+
+export const weHaveBeenFeaturedContainerClass =
+  "p-[30px] w-full flex items-center justify-center gap-[30px] flex-wrap";

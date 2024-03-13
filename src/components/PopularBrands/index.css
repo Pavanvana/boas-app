@@ -20,7 +20,8 @@
   padding-bottom: 8px !important;
 }
 
+/* TODO: Handle on hover */
 .popular-brands:hover {
-  overflow-x: auto;
+  overflow-x: scroll;
   padding-bottom: 0px !important;
 }

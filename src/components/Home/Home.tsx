@@ -15,6 +15,12 @@ import { boasImageURLs } from "../../constants/imageURL";
 import getStopTheWashData, {
   StopTheWashDataType,
 } from "../../apis/getStopTheWashData";
+import getWeHaveBeenFeaturedAPI, {
+  WeHaveBeenFeaturedDataType,
+} from "../../apis/getWeHaveBeenFeaturedAPI";
+import DiscountedCards from "../DiscountedCards/DiscountedCards";
+import GetTheApp from "../GetTheApp/GetTheApp";
+import Newsletter from "../Newsletter/Newsletter";
 
 import {
   bodyContainerClass,
@@ -35,6 +41,8 @@ import {
   shopTheWashHeaderClass,
   shopTheWashCardClass,
   shopTheWashCardColor,
+  shopTheWashContainerClass,
+  weHaveBeenFeaturedContainerClass,
 } from "./styles";
 import "./index.css";
 
@@ -47,11 +55,15 @@ const Home = (): React.ReactElement => {
   const [stopTheWashData, setStopTheWashData] = useState<StopTheWashDataType[]>(
     []
   );
+  const [weHaveBeenFeaturedData, setWeHaveBeenFeaturedData] = useState<
+    WeHaveBeenFeaturedDataType[]
+  >([]);
 
   const t = useCustomT("header");
 
   useEffect(() => {
     getStopTheWashData(setStopTheWashData);
+    getWeHaveBeenFeaturedAPI(setWeHaveBeenFeaturedData);
   }, []);
 
   const onClickTab = (NavigationPath: string): void => {
@@ -91,32 +103,31 @@ const Home = (): React.ReactElement => {
     </div>
   );
 
-  const renderChatbotAndCountries = (): React.ReactElement => (
+  const renderCountriesList = (): React.ReactElement => (
     <div
-      className={chatbotAndCountriesContainerClass}
+      className={countriesDropDownClass}
       onClick={() => {
         setIsOpenCountriesDropDown(!isOpenCountriesDropDown);
       }}
     >
-      <div className="flex justify-between w-[93%]">
-        <div className={countriesDropDownClass}>
-          <div className={cn(countriesFlagClass, "countries-flags")}></div>
-          <div className={countriesTextClass}>EUP</div>
-          {isOpenCountriesDropDown ? (
-            <div className="caret-up-icon-class">
-              <CaretUpFillIcon height={14} width={14} />
-            </div>
-          ) : (
-            <div className="caret-down-icon-class">
-              <CaretDownFillIcon height={14} width={14} />
-            </div>
-          )}
+      <div className={cn(countriesFlagClass, "countries-flags")}></div>
+      <div className={countriesTextClass}>EUP</div>
+      {isOpenCountriesDropDown ? (
+        <div className="caret-up-icon-class">
+          <CaretUpFillIcon height={14} width={14} />
         </div>
-        <button className={cn(chatbotButtonClass, "chat-bot-button")}>
-          <ChatbotIcon />
-        </button>
-      </div>
+      ) : (
+        <div className="caret-down-icon-class">
+          <CaretDownFillIcon height={14} width={14} />
+        </div>
+      )}
     </div>
+  );
+
+  const renderChatbot = (): React.ReactElement => (
+    <button className={cn(chatbotButtonClass, "chat-bot-button")}>
+      <ChatbotIcon />
+    </button>
   );
 
   const renderDonationCard = (): React.ReactElement => (
@@ -161,11 +172,11 @@ const Home = (): React.ReactElement => {
     <div className="w-[100%] flex flex-col items-center justify-center mt-[30px]">
       <h3 className={shopTheWashHeaderClass}>Shop the Wash</h3>
       <div className={stopTheWashCardClass}>
-        <div className="p-[30px] w-full flex justify-between gap-[30px]">
+        <ul className={shopTheWashContainerClass}>
           {stopTheWashData.map((data) => (
             <li
               key={data.id}
-              className="w-full cursor-pointer"
+              className="w-full cursor-pointer min-w-[200px]"
               onClick={() => {
                 navigate(`/collections/${data.pageURL}`);
               }}
@@ -180,7 +191,24 @@ const Home = (): React.ReactElement => {
               </div>
             </li>
           ))}
-        </div>
+        </ul>
+      </div>
+    </div>
+  );
+
+  const renderWeHaveBeenFeaturedCard = (): React.ReactElement => (
+    <div className="w-[100%] flex flex-col items-center justify-center mt-[30px]">
+      <h3 className={shopTheWashHeaderClass}>We've been featured</h3>
+      <div className={stopTheWashCardClass}>
+        <ul className={weHaveBeenFeaturedContainerClass}>
+          {weHaveBeenFeaturedData.map((data) => (
+            <li key={data.id}>
+              <div className="w-full min-w-[170px] flex items-center justify-center">
+                <img src={data.logoURL} alt="logo" className="w-[120px]" />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -190,10 +218,15 @@ const Home = (): React.ReactElement => {
       <Header />
       <StripContainer />
       {renderPriceDrops()}
-      {renderChatbotAndCountries()}
+      {renderCountriesList()}
+      {renderChatbot()}
       <PopularBrands />
       {renderDonationCard()}
       {renderStopTheWashCard()}
+      {renderWeHaveBeenFeaturedCard()}
+      <DiscountedCards />
+      <GetTheApp />
+      <Newsletter />
       <Footer />
     </div>
   );
