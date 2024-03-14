@@ -12,7 +12,7 @@ const loginAPI = async (
   onOpenChange: (val: boolean) => void,
   onSubmitSuccess: (jwtToken: string, responseUser: ResponseUserType) => void
 ): Promise<void> => {
-  const url = "http://localhost:1337/api/auth/local";
+  const url = "https://boas-strapi-backend.onrender.com/api/auth/local";
   await axios
     .post(url, user)
     .then((response) => {

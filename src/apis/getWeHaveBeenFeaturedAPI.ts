@@ -8,7 +8,8 @@ export interface WeHaveBeenFeaturedDataType {
 const getWeHaveBeenFeaturedAPI = async (
   setWeHaveBeenFeaturedData: (data: WeHaveBeenFeaturedDataType[]) => void
 ): Promise<void> => {
-  const url = "http://localhost:1337/api/we-have-been-featureds";
+  const url =
+    "https://boas-strapi-backend.onrender.com/api/we-have-been-featureds";
   await axios
     .get(url)
     .then((response) => {

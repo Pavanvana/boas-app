@@ -11,7 +11,7 @@ export interface PopularBrandsDataType {
 const getPopularBrandsData = async (
   setPopularBrandsData: (data: PopularBrandsDataType[]) => void
 ): Promise<void> => {
-  const url = "http://localhost:1337/api/popular-brands";
+  const url = "https://boas-strapi-backend.onrender.com/api/popular-brands";
   await axios
     .get(url)
     .then((response) => {
