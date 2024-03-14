@@ -10,7 +10,7 @@ export interface StopTheWashDataType {
 const getStopTheWashData = async (
   setStopTheWashData: (data: StopTheWashDataType[]) => void
 ): Promise<void> => {
-  const url = "http://localhost:1337/api/shop-the-washes";
+  const url = "https://boas-strapi-backend.onrender.com/api/shop-the-washes";
   await axios
     .get(url)
     .then((response) => {
