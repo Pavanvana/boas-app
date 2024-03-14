@@ -235,15 +235,6 @@ const Home = (): React.ReactElement => {
             </ul>
           )}
         </ReactPopover>
-        <ReactBaseModal
-          isOpen={isLogOutModalOpen}
-          onOpenChange={setIsLogOutModalOpen}
-        >
-          <Logout
-            isLogOutModalOpen={isLogOutModalOpen}
-            setIsLogOutModalOpen={setIsLogOutModalOpen}
-          />
-        </ReactBaseModal>
       </div>
     );
   };
@@ -256,75 +247,89 @@ const Home = (): React.ReactElement => {
       : "chevron-down-class";
     //TODO: update the count of cart items
     return (
-      <ul className={headerRightTabs}>
-        <li
-          className={cn(rightTabItemClass, aboutUsActiveClassName)}
-          onMouseOver={() => setIsOpenAboutUsPopOver(true)}
-          onMouseLeave={() => {
-            setIsOpenAboutUsPopOver(false);
-          }}
-        >
-          <DialogTrigger
-            isOpen={isOpenAboutUsPopover}
-            onOpenChange={() => setIsOpenAboutUsPopOver(false)}
+      <>
+        <ul className={headerRightTabs}>
+          <li
+            className={cn(rightTabItemClass, aboutUsActiveClassName)}
+            onMouseOver={() => setIsOpenAboutUsPopOver(true)}
+            onMouseLeave={() => {
+              setIsOpenAboutUsPopOver(false);
+            }}
           >
-            <Button className="border-none bg-transparent outline-none p-0 max-[700px]:hidden">
-              <div className="flex items-center">
-                <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
-                <div className={ChevronDownClass}>
-                  <ChevronDown />
+            <DialogTrigger
+              isOpen={isOpenAboutUsPopover}
+              onOpenChange={() => setIsOpenAboutUsPopOver(false)}
+            >
+              <Button className="border-none bg-transparent outline-none p-0 max-[700px]:hidden">
+                <div className="flex items-center">
+                  <p className={rightTabItemTextClass}>{t("aboutUs")}</p>
+                  <div className={ChevronDownClass}>
+                    <ChevronDown />
+                  </div>
                 </div>
-              </div>
-            </Button>
-            {renderAboutUsPopover()}
-          </DialogTrigger>
-        </li>
-        <li className={rightTabItemClass} onClick={() => onClickTab("/invest")}>
-          <InvestIcon height={25} width={25} />
-          <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
-            {t("invest")}
-          </p>
-        </li>
-        <li
-          className={cn(rightTabItemClass, accountActiveClassName)}
-          onMouseLeave={() => {
-            setIsOpenAccountPopover(false);
-          }}
-        >
-          <DialogTrigger
-            isOpen={isOpenAccountPopover}
-            onOpenChange={() => setIsOpenAccountPopover(false)}
+              </Button>
+              {renderAboutUsPopover()}
+            </DialogTrigger>
+          </li>
+          <li
+            className={rightTabItemClass}
+            onClick={() => onClickTab("/invest")}
           >
-            <Button className="border-none bg-transparent outline-none p-0 cursor-pointer">
-              <div
-                onClick={() => setIsOpenAccountPopover(true)}
-                className="flex items-center"
-              >
-                <PersonCircle height={27} width={27} />
-                <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
-                  {t("account")}
-                </p>
+            <InvestIcon height={25} width={25} />
+            <p className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}>
+              {t("invest")}
+            </p>
+          </li>
+          <li
+            className={cn(rightTabItemClass, accountActiveClassName)}
+            onMouseLeave={() => {
+              setIsOpenAccountPopover(false);
+            }}
+            onMouseEnter={() => setIsOpenAccountPopover(true)}
+          >
+            <DialogTrigger
+              isOpen={isOpenAccountPopover}
+              onOpenChange={() => setIsOpenAccountPopover(false)}
+            >
+              <Button className="border-none bg-transparent outline-none p-0 cursor-pointer">
+                <div className="flex items-center">
+                  <PersonCircle height={27} width={27} />
+                  <p
+                    className={cn(rightTabItemTextClass, "max-[1040px]:hidden")}
+                  >
+                    {t("account")}
+                  </p>
+                </div>
+              </Button>
+              {renderAccountPopover()}
+            </DialogTrigger>
+          </li>
+          <li className={rightTabItemClass} onClick={() => onClickTab("/cart")}>
+            <div className="relative">
+              <CartIcon height={22} width={22} />
+              <div className={numberOfCartItemsCountClass}>
+                <p className={numberOfCartItemsTextClass}>0</p>
               </div>
-            </Button>
-            {renderAccountPopover()}
-          </DialogTrigger>
-          <AccountsModal
-            isOpen={isOpenLoginPopover}
-            onOpenChange={setIsOpenLoginPopover}
-            modalType={modalType}
-            setModalType={setModalType}
-          />
-        </li>
-        <li className={rightTabItemClass} onClick={() => onClickTab("/cart")}>
-          <div className="relative">
-            <CartIcon height={22} width={22} />
-            <div className={numberOfCartItemsCountClass}>
-              <p className={numberOfCartItemsTextClass}>0</p>
             </div>
-          </div>
-          <p className={rightTabItemTextClass}>{t("cart")}</p>
-        </li>
-      </ul>
+            <p className={rightTabItemTextClass}>{t("cart")}</p>
+          </li>
+        </ul>
+        <AccountsModal
+          isOpen={isOpenLoginPopover}
+          onOpenChange={setIsOpenLoginPopover}
+          modalType={modalType}
+          setModalType={setModalType}
+        />
+        <ReactBaseModal
+          isOpen={isLogOutModalOpen}
+          onOpenChange={setIsLogOutModalOpen}
+        >
+          <Logout
+            isLogOutModalOpen={isLogOutModalOpen}
+            setIsLogOutModalOpen={setIsLogOutModalOpen}
+          />
+        </ReactBaseModal>
+      </>
     );
   };
 
