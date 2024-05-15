@@ -22,20 +22,39 @@ export const toastify = (props: Props) => {
     hideProgressBar: true,
     closeOnClick: true,
     draggable: true,
-    theme: "colored",
   };
 
   switch (type) {
     case ToastEnum.INFO:
-      return toast.info(msg, toastParam);
+      return toast.info(msg, {
+        ...toastParam,
+        className:
+          "border border-solid border-blue-600 bg-blue-100 text-blue-600 rounded",
+      });
     case ToastEnum.SUCCESS:
-      return toast.success(msg, toastParam);
+      return toast.success(msg, {
+        ...toastParam,
+        className:
+          "border border-solid border-green-600 bg-green-100 text-green-600 rounded",
+      });
     case ToastEnum.WARNING:
-      return toast.warning(msg, toastParam);
+      return toast.warning(msg, {
+        ...toastParam,
+        className:
+          "border border-solid border-yellow-600 bg-yellow-100 text-yellow-600 rounded",
+      });
     case ToastEnum.ERROR:
-      return toast.error(msg, toastParam);
+      return toast.error(msg, {
+        ...toastParam,
+        className:
+          "border border-solid border-red-600 bg-red-100 text-red-600 rounded",
+      });
     default:
-      return toast.info(msg, toastParam);
+      return toast.info(msg, {
+        ...toastParam,
+        className:
+          "border border-solid border-blue-600 bg-blue-100 text-blue-600 rounded",
+      });
   }
 };
 

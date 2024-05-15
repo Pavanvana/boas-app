@@ -334,7 +334,12 @@ const Home = (): React.ReactElement => {
   };
 
   const renderLogo = (): React.ReactElement => (
-    <div className="flex items-center justify-center w-[10%]">
+    <div
+      className="flex items-center justify-center w-[10%]"
+      onClick={() => {
+        SuccessToast("Redirecting to Home Page");
+      }}
+    >
       <img
         src={boasImageURLs.logoIMageURL}
         alt={"boasLogo"}

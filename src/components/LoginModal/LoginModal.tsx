@@ -32,6 +32,8 @@ const LoginModal = (props: Props): ReactElement => {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
+  const [loginStatus, setLoginStatus] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const LoginModal = (props: Props): ReactElement => {
         identifier: email,
         password,
       };
-      loginAPI(user, onOpenChange, onSubmitSuccess);
+      loginAPI({ user, onOpenChange, onSubmitSuccess, setLoginStatus });
     } else {
       if (!isValidField(email)) setEmailError("Email is required");
       if (!isValidField(password)) setPasswordError("Password is required");
@@ -115,6 +117,7 @@ const LoginModal = (props: Props): ReactElement => {
         className={loginButtonClass}
         size="large"
         type="submit"
+        status={loginStatus}
       />
       <p className={doNotHaveAnAccountClass}>
         Don't Have an account yet?{" "}
