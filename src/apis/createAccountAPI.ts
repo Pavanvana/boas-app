@@ -10,11 +10,16 @@ interface User {
   username: string;
 }
 
-const createAccountAPI = async (
-  user: User,
-  onOpenChange: (val: boolean) => void,
-  onSubmitSuccess: (jwtToken: string, responseUser: ResponseUserType) => void
-): Promise<void> => {
+interface Props {
+  user: User;
+  onOpenChange: (val: boolean) => void;
+  onSubmitSuccess: (jwtToken: string, responseUser: ResponseUserType) => void;
+  setCreateButtonStatus: (val: boolean) => void;
+}
+
+const createAccountAPI = async (props: Props): Promise<void> => {
+  const { user, onOpenChange, onSubmitSuccess, setCreateButtonStatus } = props;
+  setCreateButtonStatus(true);
   const url =
     "https://boas-strapi-backend.onrender.com/api/auth/local/register";
   await axios
@@ -23,9 +28,11 @@ const createAccountAPI = async (
       onOpenChange(false);
       SuccessToast("Account Created Successfully");
       onSubmitSuccess(response.data.jwt, response.data.user);
+      setCreateButtonStatus(false);
     })
     .catch((error) => {
       ErrorToast(error.response.data.error.message);
+      setCreateButtonStatus(false);
     });
 };
 

@@ -9,8 +9,10 @@ export interface PopularBrandsDataType {
 }
 
 const getPopularBrandsData = async (
-  setPopularBrandsData: (data: PopularBrandsDataType[]) => void
+  setPopularBrandsData: (data: PopularBrandsDataType[]) => void,
+  setLoading: (data: boolean) => void
 ): Promise<void> => {
+  setLoading(true);
   const url = "https://boas-strapi-backend.onrender.com/api/popular-brands";
   await axios
     .get(url)
@@ -24,6 +26,7 @@ const getPopularBrandsData = async (
         };
       });
       setPopularBrandsData(updatedData);
+      setLoading(false);
     })
     .catch((error) => {
       ErrorToast(error.response.data.error.message);

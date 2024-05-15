@@ -9,6 +9,7 @@ import createAccountAPI from "../../apis/createAccountAPI";
 import { ResponseUserType } from "../../types/accountsModalTypes";
 
 import { createAccountButtonClass } from "./styles";
+import "./index.css";
 
 interface Props {
   onOpenChange: (val: boolean) => void;
@@ -25,6 +26,8 @@ const CreateAccount = (props: Props): React.ReactElement => {
   const [lastNameError, setLastNameError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+
+  const [createButtonStatus, setCreateButtonStatus] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -51,7 +54,12 @@ const CreateAccount = (props: Props): React.ReactElement => {
         password,
         username: firstName,
       };
-      createAccountAPI(user, onOpenChange, onSubmitSuccess);
+      createAccountAPI({
+        user,
+        onOpenChange,
+        onSubmitSuccess,
+        setCreateButtonStatus,
+      });
     } else {
       if (!isValidField(firstName)) setFirstNameError("First Name is required");
       if (!isValidField(lastName)) setLastNameError("Last Name is required");
@@ -93,7 +101,10 @@ const CreateAccount = (props: Props): React.ReactElement => {
   };
 
   return (
-    <form className="flex flex-col" onSubmit={onClickSubmit}>
+    <form
+      className="flex flex-col create-account-form"
+      onSubmit={onClickSubmit}
+    >
       <TextField
         label="First Name"
         value={firstName}
@@ -135,6 +146,7 @@ const CreateAccount = (props: Props): React.ReactElement => {
         className={createAccountButtonClass}
         size="large"
         type="submit"
+        status={createButtonStatus}
       />
     </form>
   );

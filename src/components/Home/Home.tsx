@@ -30,7 +30,6 @@ import {
   offerHeader,
   rightButtonsClass,
   buttonsContainer,
-  chatbotAndCountriesContainerClass,
   countriesDropDownClass,
   countriesFlagClass,
   countriesTextClass,

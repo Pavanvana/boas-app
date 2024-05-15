@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import { getButtonStyles } from "./styles";
+import "./index.css";
 
 interface Props {
   buttonText: string;
@@ -9,6 +10,7 @@ interface Props {
   className?: string;
   disabled?: boolean;
   type?: "submit" | "reset" | "button" | undefined;
+  status?: boolean;
 }
 
 const Button = (props: Props): React.ReactElement => {
@@ -19,7 +21,17 @@ const Button = (props: Props): React.ReactElement => {
     disabled,
     size,
     type = "button",
+    status,
   } = props;
+
+  const loader = () => <div className="spinner" />;
+
+  const renderButtonText = () => {
+    if (status) {
+      return loader();
+    }
+    return buttonText;
+  };
 
   return (
     <button
@@ -28,7 +40,7 @@ const Button = (props: Props): React.ReactElement => {
       disabled={disabled}
       type={type}
     >
-      {buttonText}
+      {renderButtonText()}
     </button>
   );
 };

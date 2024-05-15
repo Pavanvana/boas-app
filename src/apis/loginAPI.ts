@@ -1,29 +1,33 @@
 import axios from "axios";
-import { ErrorToast, SuccessToast } from "../utils/toastUtils";
 import { ResponseUserType } from "../types/accountsModalTypes";
+import { ErrorToast, SuccessToast } from "../utils/toastUtils";
 
 interface User {
   identifier: string;
   password: string;
 }
 
-const loginAPI = async (
-  user: User,
-  onOpenChange: (val: boolean) => void,
-  onSubmitSuccess: (jwtToken: string, responseUser: ResponseUserType) => void
-): Promise<void> => {
+interface Props {
+  user: User;
+  onOpenChange: (val: boolean) => void;
+  onSubmitSuccess: (jwtToken: string, responseUser: ResponseUserType) => void;
+  setLoginStatus: (val: boolean) => void;
+}
+const loginAPI = async (props: Props): Promise<void> => {
+  const { user, onOpenChange, onSubmitSuccess, setLoginStatus } = props;
+  setLoginStatus(true);
   const url = "https://boas-strapi-backend.onrender.com/api/auth/local";
   await axios
     .post(url, user)
     .then((response) => {
-      console.log(response.data);
       SuccessToast("Logged in successfully");
       onOpenChange(false);
-      console.log(response.data);
       onSubmitSuccess(response.data.jwt, response.data.user);
+      setLoginStatus(false);
     })
     .catch((error) => {
       ErrorToast(error.response.data.error.message);
+      setLoginStatus(false);
     });
 };
 

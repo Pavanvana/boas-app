@@ -1,7 +1,6 @@
 import React from "react";
 import { LuLogOut } from "react-icons/lu";
 import Cookies from "js-cookie";
-
 import { SuccessToast } from "../../utils/toastUtils";
 
 import {
