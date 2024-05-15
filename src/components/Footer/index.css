@@ -103,6 +103,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 4px;
 }
 .social-icons .fab:hover {
   background: rgb(197, 219, 143);

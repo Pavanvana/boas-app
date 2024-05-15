@@ -6,7 +6,7 @@ export const boasImageURLs = {
   learnMoreImageURL:
     "https://cdn.shopify.com/s/files/1/0598/2194/9121/files/reverse-auction-img.png?v=1705527940",
   boasLogo:
-    "https://shop.boas.co/cdn/shop/t/54/assets/Boas_SaveJeans_SaveLives_black.svg?v=108361293104262643801705798139",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715782806/Boas_SaveJeans_SaveLives_black_e0oumo.svg",
   appGooglePlay:
     "https://cdn.shopify.com/s/files/1/0598/2194/9121/files/googleplay_2114da4a87.svg?v=1699922657",
   appStore:
@@ -21,23 +21,38 @@ export const boasImageURLs = {
 
 export const supportedPaymentMethodsImages = {
   dealPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_deal.png?v=57189021671588529871679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715779864/IDEAL_Logo_2020_fpljn5.svg",
   amazonPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_amazon.png?v=54906662476848016371679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715782620/payment_method_amazon_k105uq.webp",
   paypalPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_paypal.png?v=14275536502169800201679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715782744/payment_method_paypal_wsd7mw.png",
   masterCardPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_mastercard.png?v=88842919818796221951679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715782910/payment_method_mastercard_tqiite.png",
   klarnaPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_klarna.png?v=143107275516104351411679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715782974/payment_method_klarna_s3lgvg.png",
   visaPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_visa_image.png?v=54488292528603714521679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783035/payment_method_visa_image_pruutj.png",
   shoppayPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_shoppay.png?v=164706647414704945191679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783100/payment_method_shoppay_o0w4wi.png",
   gPayPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_gpay.png?v=116435065956880442461679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783170/payment_method_gpay_f2qrt2.png",
   amxPayment:
-    "https://shop.boas.co/cdn/shop/t/54/assets/payment_method_amx.png?v=74243363861210880051679307177",
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783236/payment_method_amx_o63elh.png",
+};
+
+export const socialMediaImages = {
+  facebook:
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783317/facebook_logo_iibfux.png",
+  instagram:
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715783649/instagram_logo_eierev.png",
+  tickTock:
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715784375/tiktok_logo_new_vxjzpa.png",
+  linkedIn:
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715784439/linkedin_logo_vnoon1.png",
+  spotify:
+    "https://res.cloudinary.com/daflxmokq/image/upload/v1715784547/spotify_logo_new_rzozkn.png",
+  youTube:
+    "https://t3.ftcdn.net/jpg/04/74/05/94/360_F_474059464_qldYuzxaUWEwNTtYBJ44VN89ARuFktHW.jpg",
 };
 
 export const donateSectionImages = {

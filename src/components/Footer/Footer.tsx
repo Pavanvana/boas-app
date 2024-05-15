@@ -4,6 +4,7 @@ import TextField from "../../common/TextField/TextField";
 import Button from "../../common/Button/Button";
 import {
   boasImageURLs,
+  socialMediaImages,
   supportedPaymentMethodsImages,
 } from "../../constants/imageURL";
 
@@ -168,7 +169,7 @@ const Footer = (): React.ReactElement => {
               <div className="fab fa-tiktok" aria-hidden="true">
                 <div className="social-icons-logo">
                   <img
-                    src="//shop.boas.co/cdn/shop/t/54/assets/facebook_logo.png?v=111768930219237438961679307177"
+                    src={socialMediaImages.facebook}
                     alt="test"
                     className="social-logo"
                   />
@@ -183,7 +184,7 @@ const Footer = (): React.ReactElement => {
               <div className="fab fa-tiktok" aria-hidden="true">
                 <div className="social-icons-logo">
                   <img
-                    src="//shop.boas.co/cdn/shop/t/54/assets/instagram_logo.png?v=69111395402489423731679307177"
+                    src={socialMediaImages.instagram}
                     alt="test"
                     className="social-logo"
                   />
@@ -198,7 +199,7 @@ const Footer = (): React.ReactElement => {
               <div className="fab fa-tiktok" aria-hidden="true">
                 <div className="social-icons-logo">
                   <img
-                    src="//shop.boas.co/cdn/shop/t/54/assets/tiktok_logo_new.png?v=28475546769171832871679307177"
+                    src={socialMediaImages.tickTock}
                     alt="test"
                     className="social-logo"
                   />
@@ -213,7 +214,7 @@ const Footer = (): React.ReactElement => {
               <div className="fab fa-tiktok" aria-hidden="true">
                 <div className="social-icons-logo">
                   <img
-                    src="//shop.boas.co/cdn/shop/t/54/assets/linkedin_logo.png?v=148665479824603558871679307177"
+                    src={socialMediaImages.linkedIn}
                     alt="test"
                     className="social-logo"
                   />
@@ -229,7 +230,7 @@ const Footer = (): React.ReactElement => {
               <div className="fab fa-tiktok" aria-hidden="true">
                 <div className="social-icons-logo" id="spotify-logo">
                   <img
-                    src="//shop.boas.co/cdn/shop/t/54/assets/spotify_logo_new.png?v=27010289175530569261679307177"
+                    src={socialMediaImages.spotify}
                     alt="test"
                     className="social-logo"
                   />
@@ -243,7 +244,7 @@ const Footer = (): React.ReactElement => {
             >
               <div className="fab fa-youtube" aria-hidden="true">
                 <img
-                  src="https://t3.ftcdn.net/jpg/04/74/05/94/360_F_474059464_qldYuzxaUWEwNTtYBJ44VN89ARuFktHW.jpg"
+                  src={socialMediaImages.youTube}
                   alt="youtube"
                   className="youtube-logo"
                 />
@@ -256,7 +257,7 @@ const Footer = (): React.ReactElement => {
   );
 
   return (
-    <div className="pt-[50px]" id="footer">
+    <div className="p-[50px_0px_10px_0px]" id="footer">
       {renderFooterTopSection()}
       {renderFooterBottomSection()}
     </div>
